@@ -1,0 +1,1 @@
+﻿// Script utama masih berada di index.html. File ini disiapkan agar struktur project lengkap.

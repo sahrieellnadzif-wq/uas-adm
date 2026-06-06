@@ -1,0 +1,1737 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syahril Nadzif Ramadhan — Portfolio CV</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600&family=Permanent+Marker&family=Bebas+Neue&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --black:       #03050d;
+            --black-soft:  #070b17;
+            --black-card:  #0a0f1e;
+            --blue-deep:   #081224;
+            --blue-mid:    #132d5e;
+            --blue-bright: #1e56c0;
+            --blue-metal:  #3d7fcc;
+            --blue-shine:  #6aa8e8;
+            --blue-pale:   #a0c8f0;
+            --gold:        #c9a84c;
+            --gold-light:  #e8c96a;
+            --gold-pale:   #f0dfa0;
+            --border:      rgba(61,127,204,0.2);
+            --border-glow: rgba(61,127,204,0.5);
+            --text-main:   #e4ecf8;
+            --text-muted:  #7a9ec4;
+            --text-dim:    #3a5070;
+            --graffiti1:   #ff3366;
+            --graffiti2:   #00e5ff;
+            --graffiti3:   #ffdd00;
+            --graffiti4:   #a020f0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--black);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* ═══ AMBIENT BACKGROUND ════════════════════════════ */
+        .bg-canvas {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-canvas::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse 80% 60% at 20% 10%, rgba(19,45,94,0.45) 0%, transparent 70%),
+                radial-gradient(ellipse 60% 50% at 80% 90%, rgba(8,18,36,0.6) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 70% 20%, rgba(30,86,192,0.12) 0%, transparent 60%);
+        }
+
+        /* Noise texture */
+        .bg-canvas::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            opacity: 0.4;
+        }
+
+        /* ═══ GRAFFITI LAYER ════════════════════════════════ */
+        .graffiti-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .graffiti-text {
+            position: absolute;
+            font-family: 'Permanent Marker', cursive;
+            opacity: 0.045;
+            transform-origin: center;
+            user-select: none;
+        }
+
+        .g1 { top: 5%; left: -2%; font-size: 120px; color: var(--graffiti2); transform: rotate(-15deg); }
+        .g2 { top: 30%; right: -3%; font-size: 90px; color: var(--graffiti1); transform: rotate(12deg); }
+        .g3 { bottom: 20%; left: 5%; font-size: 80px; color: var(--graffiti3); transform: rotate(-8deg); }
+        .g4 { bottom: 5%; right: 8%; font-size: 100px; color: var(--graffiti4); transform: rotate(18deg); }
+        .g5 { top: 60%; left: 40%; font-size: 70px; color: var(--blue-shine); transform: rotate(-5deg); }
+        .g6 { top: 15%; left: 35%; font-size: 50px; color: var(--gold-light); transform: rotate(20deg); }
+
+        /* Graffiti spray dots */
+        .spray {
+            position: absolute;
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.04;
+        }
+
+        .sp1 { width: 300px; height: 300px; background: radial-gradient(var(--graffiti2), transparent 70%); top: 8%; left: 20%; }
+        .sp2 { width: 200px; height: 200px; background: radial-gradient(var(--graffiti1), transparent 70%); bottom: 15%; right: 10%; }
+        .sp3 { width: 250px; height: 250px; background: radial-gradient(var(--graffiti3), transparent 70%); top: 50%; left: 60%; }
+
+        /* Street art lines */
+        .street-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(106,168,232,0.08), transparent);
+            height: 1px;
+            width: 100%;
+            pointer-events: none;
+        }
+        .sl1 { top: 22%; }
+        .sl2 { top: 55%; }
+        .sl3 { top: 80%; }
+
+        /* ═══ SIDEBAR ════════════════════════════════════════ */
+        .sidebar {
+            position: fixed;
+            left: 0; top: 0;
+            width: 260px;
+            height: 100vh;
+            background: linear-gradient(180deg,
+                #060a16 0%,
+                #090e1e 30%,
+                #0a1020 60%,
+                #060911 100%
+            );
+            border-right: 1px solid var(--border);
+            z-index: 100;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .sidebar::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, var(--blue-metal), var(--gold), var(--blue-metal), transparent);
+            animation: shimmerLine 4s linear infinite;
+        }
+
+        @keyframes shimmerLine {
+            0% { background-position: -200% center; }
+            100% { background-position: 200% center; }
+        }
+
+        /* Moving gradient on sidebar edge */
+        .sidebar::after {
+            content: '';
+            position: absolute;
+            top: 0; right: -1px;
+            width: 1px;
+            height: 100%;
+            background: linear-gradient(180deg,
+                transparent 0%,
+                var(--blue-metal) 30%,
+                rgba(201,168,76,0.6) 50%,
+                var(--blue-metal) 70%,
+                transparent 100%
+            );
+            animation: sidebarGlow 6s ease-in-out infinite;
+        }
+
+        @keyframes sidebarGlow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        .sidebar-brand {
+            padding: 32px 24px 24px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .sidebar-brand .initials {
+            width: 52px; height: 52px;
+            background: linear-gradient(135deg, var(--blue-mid), var(--blue-bright));
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px; font-weight: 700;
+            color: var(--blue-pale);
+            border: 1px solid var(--border-glow);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+            box-shadow: 0 0 20px rgba(61,127,204,0.3), inset 0 1px 0 rgba(255,255,255,0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .sidebar-brand .initials:hover {
+            box-shadow: 0 0 35px rgba(61,127,204,0.6), inset 0 1px 0 rgba(255,255,255,0.1);
+        }
+
+        .sidebar-brand h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 16px; font-weight: 500;
+            color: var(--blue-pale);
+            line-height: 1.3;
+        }
+
+        .sidebar-brand p {
+            font-size: 10px; font-weight: 300;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        .sidebar-nav {
+            flex: 1;
+            padding: 16px 0;
+            overflow-y: auto;
+        }
+
+        .sidebar-nav::-webkit-scrollbar { width: 3px; }
+        .sidebar-nav::-webkit-scrollbar-track { background: transparent; }
+        .sidebar-nav::-webkit-scrollbar-thumb { background: var(--blue-mid); border-radius: 2px; }
+
+        .nav-section-label {
+            font-size: 9px; font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            padding: 16px 24px 8px;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 24px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 12px; font-weight: 400;
+            letter-spacing: 0.5px;
+            transition: all 0.25s ease;
+            position: relative;
+            cursor: pointer;
+            border: none; background: none; width: 100%; text-align: left;
+        }
+
+        .nav-item::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 50%; transform: translateY(-50%);
+            width: 2px; height: 0;
+            background: linear-gradient(180deg, var(--blue-metal), var(--gold));
+            transition: height 0.25s ease;
+            border-radius: 0 2px 2px 0;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--blue-shine);
+            background: rgba(42,99,176,0.1);
+        }
+
+        .nav-item:hover::before, .nav-item.active::before { height: 60%; }
+
+        .nav-dot {
+            width: 5px; height: 5px;
+            border-radius: 50%;
+            background: var(--blue-mid);
+            flex-shrink: 0;
+            transition: all 0.25s;
+        }
+
+        .nav-item:hover .nav-dot, .nav-item.active .nav-dot {
+            background: var(--blue-metal);
+            box-shadow: 0 0 6px var(--blue-metal);
+        }
+
+        .sidebar-footer {
+            padding: 16px 24px;
+            border-top: 1px solid var(--border);
+        }
+
+        .sidebar-footer p {
+            font-size: 10px; font-weight: 300;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+        }
+
+        .status-dot {
+            display: inline-block;
+            width: 6px; height: 6px;
+            background: #2ecc71;
+            border-radius: 50%;
+            margin-right: 6px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 0 0 rgba(46,204,113,0.4); }
+            50% { opacity: 0.6; box-shadow: 0 0 0 4px rgba(46,204,113,0); }
+        }
+
+        /* ═══ MAIN ════════════════════════════════════════════ */
+        .main {
+            margin-left: 260px;
+            min-height: 100vh;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* ═══ TOPBAR ══════════════════════════════════════════ */
+        .topbar {
+            position: sticky; top: 0;
+            background: rgba(3,5,13,0.88);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+            padding: 0 48px;
+            height: 56px;
+            display: flex; align-items: center; justify-content: space-between;
+            z-index: 50;
+        }
+
+        .topbar-left {
+            font-size: 11px; font-weight: 300;
+            color: var(--text-dim);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .topbar-right {
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        .tag {
+            padding: 4px 12px;
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            font-size: 10px; font-weight: 400;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .tag:hover {
+            border-color: var(--blue-metal);
+            color: var(--blue-shine);
+            background: rgba(61,127,204,0.1);
+        }
+
+        .tag.active {
+            border-color: var(--blue-metal);
+            color: var(--blue-shine);
+            background: rgba(61,127,204,0.12);
+        }
+
+        /* ═══ SECTIONS ════════════════════════════════════════ */
+        .section {
+            padding: 64px 48px;
+            border-bottom: 1px solid var(--border);
+            position: relative;
+        }
+
+        .section:last-child { border-bottom: none; }
+
+        .section-header {
+            display: flex; align-items: center; gap: 16px;
+            margin-bottom: 40px;
+        }
+
+        .section-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 14px;
+            color: var(--blue-metal);
+            letter-spacing: 3px;
+        }
+
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 30px; font-weight: 600;
+            background: linear-gradient(135deg, var(--text-main), var(--blue-pale));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 1px;
+        }
+
+        .section-line {
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--border-glow), transparent);
+        }
+
+        /* ═══ HERO ════════════════════════════════════════════ */
+        #hero {
+            padding: 80px 48px 64px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Hero background accent */
+        #hero::before {
+            content: '';
+            position: absolute;
+            top: -40%; right: -20%;
+            width: 600px; height: 600px;
+            background: radial-gradient(ellipse, rgba(19,45,94,0.3) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 280px;
+            gap: 64px;
+            align-items: start;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 11px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--blue-metal);
+            margin-bottom: 16px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.1s forwards;
+        }
+
+        .hero-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 56px; font-weight: 300;
+            line-height: 1.05;
+            color: var(--text-main);
+            margin-bottom: 8px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.2s forwards;
+        }
+
+        .hero-name span {
+            display: block;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--blue-shine) 0%, var(--blue-pale) 40%, var(--gold-light) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            background-size: 200% auto;
+            animation: gradientShift 4s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% center; }
+            50% { background-position: 100% center; }
+        }
+
+        .hero-title {
+            font-size: 12px; font-weight: 300;
+            color: var(--text-muted);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.3s forwards;
+        }
+
+        .hero-about {
+            font-size: 14px; font-weight: 300;
+            color: var(--text-muted);
+            line-height: 1.9;
+            max-width: 560px;
+            margin-bottom: 32px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.4s forwards;
+        }
+
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .hero-contacts {
+            display: flex; flex-wrap: wrap; gap: 10px;
+            opacity: 0;
+            animation: fadeUp 0.8s ease 0.5s forwards;
+        }
+
+        .contact-pill {
+            display: flex; align-items: center; gap: 8px;
+            padding: 8px 16px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            font-size: 12px; font-weight: 400;
+            color: var(--text-muted);
+            background: rgba(7,11,23,0.7);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-pill::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(61,127,204,0.12), rgba(201,168,76,0.06));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .contact-pill:hover { border-color: var(--blue-metal); color: var(--blue-shine); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.4); }
+        .contact-pill:hover::before { opacity: 1; }
+
+        .contact-icon {
+            width: 14px; height: 14px;
+            fill: none; stroke: currentColor; stroke-width: 1.5;
+        }
+
+        /* ─── ROYAL PHOTO FRAME ─── */
+        .photo-frame {
+            position: relative;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.3s forwards;
+        }
+
+        .photo-outer {
+            width: 100%;
+            aspect-ratio: 3/4;
+            position: relative;
+        }
+
+        /* Outer glow */
+        .photo-outer::before {
+            content: '';
+            position: absolute;
+            inset: -4px;
+            background: linear-gradient(135deg, var(--gold), var(--blue-metal), var(--gold-light), var(--blue-bright));
+            border-radius: 2px;
+            z-index: 0;
+            animation: frameRotate 6s linear infinite;
+            background-size: 300% 300%;
+        }
+
+        @keyframes frameRotate {
+            0% { background-position: 0% 0%; }
+            50% { background-position: 100% 100%; }
+            100% { background-position: 0% 0%; }
+        }
+
+        /* Royal corner ornaments */
+        .royal-corner {
+            position: absolute;
+            width: 44px; height: 44px;
+            z-index: 10;
+        }
+
+        .royal-corner svg {
+            width: 44px; height: 44px;
+        }
+
+        .royal-corner.tl { top: -2px; left: -2px; }
+        .royal-corner.tr { top: -2px; right: -2px; transform: scaleX(-1); }
+        .royal-corner.bl { bottom: -2px; left: -2px; transform: scaleY(-1); }
+        .royal-corner.br { bottom: -2px; right: -2px; transform: scale(-1); }
+
+        /* Crown on top */
+        .photo-crown {
+            position: absolute;
+            top: -36px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 11;
+            font-size: 30px;
+            filter: drop-shadow(0 0 8px rgba(201,168,76,0.8));
+            animation: crownFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes crownFloat {
+            0%, 100% { transform: translateX(-50%) translateY(0); }
+            50% { transform: translateX(-50%) translateY(-4px); }
+        }
+
+        /* Side ornaments */
+        .photo-side-l, .photo-side-r {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 11;
+            color: var(--gold);
+            font-size: 18px;
+            opacity: 0.8;
+        }
+
+        .photo-side-l { left: -24px; }
+        .photo-side-r { right: -24px; }
+
+        .photo-inner {
+            position: absolute;
+            inset: 8px;
+            background: linear-gradient(180deg, var(--blue-deep), var(--black));
+            border: 1px solid rgba(201,168,76,0.3);
+            overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            flex-direction: column; gap: 12px;
+            z-index: 1;
+        }
+
+        /* Inner corner lines */
+        .photo-inner::before {
+            content: '';
+            position: absolute;
+            inset: 6px;
+            border: 1px solid rgba(201,168,76,0.15);
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .photo-inner img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .photo-placeholder {
+            display: flex; flex-direction: column; align-items: center; gap: 12px;
+            z-index: 1;
+        }
+
+        .photo-placeholder-icon {
+            width: 60px; height: 60px;
+            border: 1px dashed rgba(201,168,76,0.3);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+        }
+
+        .photo-placeholder-icon svg {
+            width: 28px; height: 28px;
+            stroke: var(--text-dim);
+        }
+
+        .photo-placeholder p {
+            font-size: 10px; font-weight: 300;
+            color: var(--text-dim);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-align: center;
+        }
+
+        .photo-upload-wrap {
+            margin-top: 18px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .photo-upload-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 14px;
+            border: 1px solid rgba(201,168,76,0.35);
+            border-radius: 999px;
+            background: rgba(8, 18, 36, 0.85);
+            color: var(--gold-light);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .photo-upload-btn:hover {
+            background: rgba(30, 86, 192, 0.18);
+            border-color: rgba(201, 168, 76, 0.6);
+            box-shadow: 0 0 18px rgba(61,127,204,0.2);
+        }
+
+        .photo-upload-note {
+            font-size: 10px;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            text-align: center;
+        }
+
+        .photo-label {
+            position: absolute;
+            bottom: 12px; left: 0; right: 0;
+            text-align: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 11px;
+            letter-spacing: 4px;
+            color: var(--gold);
+            opacity: 0.7;
+            z-index: 3;
+        }
+
+        /* Bottom ribbon */
+        .photo-ribbon {
+            position: absolute;
+            bottom: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, transparent, rgba(201,168,76,0.15), rgba(201,168,76,0.4), rgba(201,168,76,0.15), transparent);
+            width: 80%;
+            height: 1px;
+            z-index: 11;
+        }
+
+        .photo-ribbon::after {
+            content: '◆';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%) translateY(-50%);
+            color: var(--gold);
+            font-size: 8px;
+            opacity: 0.8;
+        }
+
+        /* ─── Stats bar ─── */
+        .stats-bar {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 32px;
+            background: rgba(7,11,23,0.6);
+        }
+
+        .stat-item {
+            padding: 20px;
+            text-align: center;
+            border-right: 1px solid var(--border);
+            cursor: default;
+            transition: background 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-item::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(61,127,204,0.12), rgba(201,168,76,0.06));
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .stat-item:hover::before { opacity: 1; }
+        .stat-item:last-child { border-right: none; }
+
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 36px;
+            color: transparent;
+            background: linear-gradient(135deg, var(--blue-shine), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1;
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover .stat-number { letter-spacing: 2px; }
+
+        .stat-label {
+            font-size: 9px; font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-dim);
+            margin-top: 6px;
+        }
+
+        /* ═══ DROPDOWN CARDS ══════════════════════════════════ */
+        .dropdown-card {
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            margin-bottom: 12px;
+            overflow: hidden;
+            background: rgba(7,11,23,0.65);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .dropdown-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(61,127,204,0), transparent);
+            transition: background 0.4s;
+        }
+
+        .dropdown-card:hover::before,
+        .dropdown-card.open::before {
+            background: linear-gradient(90deg, transparent, var(--blue-metal), transparent);
+        }
+
+        .dropdown-card:hover { border-color: rgba(61,127,204,0.38); }
+        .dropdown-card.open { border-color: rgba(61,127,204,0.5); box-shadow: 0 0 30px rgba(0,0,0,0.5), inset 0 0 40px rgba(8,18,36,0.3); }
+
+        .dropdown-trigger {
+            width: 100%;
+            padding: 20px 24px;
+            display: flex; align-items: center; justify-content: space-between;
+            background: none; border: none;
+            color: var(--text-main);
+            cursor: pointer;
+            text-align: left;
+            gap: 16px;
+            transition: background 0.25s;
+        }
+
+        .dropdown-trigger:hover { background: rgba(61,127,204,0.05); }
+
+        .dropdown-trigger-left {
+            display: flex; align-items: center; gap: 16px;
+        }
+
+        .dropdown-badge {
+            width: 38px; height: 38px;
+            background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+            border: 1px solid var(--border-glow);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+
+        .dropdown-card.open .dropdown-badge {
+            background: linear-gradient(135deg, var(--blue-mid), var(--blue-bright));
+            box-shadow: 0 0 16px rgba(61,127,204,0.4);
+        }
+
+        .dropdown-badge svg {
+            width: 16px; height: 16px;
+            stroke: var(--blue-shine); fill: none; stroke-width: 1.5;
+        }
+
+        .dropdown-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 19px; font-weight: 600;
+            color: var(--text-main);
+        }
+
+        .dropdown-subtitle {
+            font-size: 11px; font-weight: 300;
+            color: var(--text-dim);
+            letter-spacing: 1px;
+            margin-top: 2px;
+        }
+
+        .dropdown-arrow {
+            width: 20px; height: 20px;
+            stroke: var(--text-dim); fill: none; stroke-width: 1.5;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+        }
+
+        .dropdown-card.open .dropdown-arrow {
+            transform: rotate(180deg);
+            stroke: var(--blue-metal);
+        }
+
+        .dropdown-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+            border-top: 1px solid transparent;
+        }
+
+        .dropdown-card.open .dropdown-body {
+            max-height: 1200px;
+            border-top-color: var(--border);
+        }
+
+        .dropdown-body-inner { padding: 20px 24px 24px; }
+
+        /* ═══ TIMELINE ════════════════════════════════════════ */
+        .timeline { position: relative; padding-left: 28px; }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 7px; top: 8px; bottom: 0;
+            width: 1px;
+            background: linear-gradient(180deg, var(--blue-metal), transparent);
+        }
+
+        .timeline-item { position: relative; margin-bottom: 28px; }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -22px; top: 8px;
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--blue-metal), var(--blue-bright));
+            border: 2px solid var(--black);
+            box-shadow: 0 0 10px rgba(61,127,204,0.6);
+        }
+
+        .timeline-date {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--blue-metal);
+            margin-bottom: 6px;
+        }
+
+        .timeline-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 19px; font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .timeline-role {
+            font-size: 11px; font-weight: 300;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-bottom: 10px;
+        }
+
+        .timeline-desc {
+            font-size: 13px; font-weight: 300;
+            color: var(--text-dim);
+            line-height: 1.8;
+        }
+
+        .timeline-achievement {
+            display: inline-flex; align-items: center; gap: 6px;
+            margin-top: 12px;
+            padding: 6px 14px;
+            border: 1px solid rgba(201,168,76,0.3);
+            border-radius: 4px;
+            background: rgba(201,168,76,0.06);
+            font-size: 11px; font-weight: 400;
+            color: var(--gold);
+            transition: all 0.3s;
+        }
+
+        .timeline-achievement:hover {
+            background: rgba(201,168,76,0.12);
+            border-color: rgba(201,168,76,0.5);
+            transform: translateX(4px);
+        }
+
+        /* ═══ SKILLS ══════════════════════════════════════════ */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+        }
+
+        .skill-item {
+            padding: 16px 20px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: rgba(7,11,23,0.6);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex; align-items: center; gap: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-item::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 0; height: 2px;
+            background: linear-gradient(90deg, var(--blue-metal), var(--gold));
+            transition: width 0.4s ease;
+        }
+
+        .skill-item:hover {
+            border-color: var(--blue-metal);
+            background: rgba(19,45,94,0.25);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+        }
+
+        .skill-item:hover::after { width: 100%; }
+
+        .skill-icon {
+            width: 34px; height: 34px;
+            background: linear-gradient(135deg, var(--blue-deep), var(--blue-mid));
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            flex-shrink: 0;
+            transition: all 0.3s;
+        }
+
+        .skill-item:hover .skill-icon { background: linear-gradient(135deg, var(--blue-mid), var(--blue-bright)); box-shadow: 0 0 12px rgba(61,127,204,0.4); }
+
+        .skill-icon svg { width: 16px; height: 16px; stroke: var(--blue-shine); fill: none; stroke-width: 1.5; }
+        .skill-name { font-size: 13px; font-weight: 400; color: var(--text-muted); }
+
+        /* ═══ ORG CARDS ══════════════════════════════════════ */
+        .org-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .org-card {
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: rgba(7,11,23,0.6);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            cursor: default;
+        }
+
+        .org-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--blue-mid), var(--blue-metal), var(--gold));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .org-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(19,45,94,0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .org-card:hover::before { transform: scaleX(1); }
+        .org-card:hover::after { opacity: 1; }
+        .org-card:hover {
+            border-color: rgba(61,127,204,0.4);
+            transform: translateY(-2px);
+            box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+        }
+
+        .org-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px; font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 4px;
+            position: relative; z-index: 1;
+        }
+
+        .org-role {
+            font-size: 10px; font-weight: 600;
+            color: var(--blue-metal);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            position: relative; z-index: 1;
+        }
+
+        .org-desc {
+            font-size: 12px; font-weight: 300;
+            color: var(--text-dim);
+            line-height: 1.7;
+            position: relative; z-index: 1;
+        }
+
+        /* ═══ PROJECT CARDS ══════════════════════════════════ */
+        .project-card {
+            padding: 24px;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            background: rgba(7,11,23,0.6);
+            margin-bottom: 12px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 24px;
+            align-items: start;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--blue-metal), var(--gold));
+            transform: scaleY(0);
+            transition: transform 0.4s ease;
+        }
+
+        .project-card:hover {
+            border-color: rgba(61,127,204,0.4);
+            background: rgba(8,18,36,0.8);
+            transform: translateX(4px);
+            box-shadow: -4px 0 0 var(--blue-metal), 0 16px 40px rgba(0,0,0,0.5);
+        }
+
+        .project-card:hover::before { transform: scaleY(1); }
+
+        .project-num {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px;
+            color: rgba(61,127,204,0.15);
+            line-height: 1;
+            transition: color 0.3s;
+        }
+
+        .project-card:hover .project-num { color: rgba(61,127,204,0.35); }
+
+        .project-name {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 21px; font-weight: 600;
+            color: var(--text-main);
+            margin-bottom: 4px;
+        }
+
+        .project-date {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 11px;
+            letter-spacing: 3px;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .project-desc {
+            font-size: 13px; font-weight: 300;
+            color: var(--text-dim);
+            line-height: 1.8;
+        }
+
+        /* ═══ MOBILE ══════════════════════════════════════════ */
+        .hamburger {
+            display: none;
+            position: fixed;
+            top: 12px; left: 12px;
+            z-index: 200;
+            width: 40px; height: 40px;
+            background: var(--black-card);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            flex-direction: column;
+            align-items: center; justify-content: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+
+        .hamburger span { width: 18px; height: 1.5px; background: var(--blue-shine); border-radius: 2px; transition: all 0.3s; }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            z-index: 90;
+            backdrop-filter: blur(4px);
+        }
+
+        @media (max-width: 900px) {
+            .sidebar { transform: translateX(-100%); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+            .sidebar.open { transform: translateX(0); }
+            .main { margin-left: 0; }
+            .hamburger { display: flex; }
+            .sidebar-overlay.visible { display: block; }
+            .hero-grid { grid-template-columns: 1fr; }
+            .photo-frame { max-width: 220px; margin: 40px auto 0; }
+            .skills-grid { grid-template-columns: repeat(2, 1fr); }
+            .org-grid { grid-template-columns: 1fr; }
+            .section, #hero { padding: 48px 24px; }
+            .topbar { padding: 0 24px; }
+        }
+
+        /* ═══ CURSOR TRAIL EFFECT (desktop) ═════════════════ */
+        .cursor-dot {
+            width: 6px; height: 6px;
+            background: var(--blue-metal);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.3s;
+            mix-blend-mode: screen;
+        }
+
+        /* ═══ FLOATING PARTICLES ═════════════════════════════ */
+        .particle {
+            position: fixed;
+            width: 2px; height: 2px;
+            background: var(--blue-metal);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            opacity: 0;
+            animation: particleFloat linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.3; }
+            100% { transform: translateY(-100px) translateX(40px); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- Background layers -->
+<div class="bg-canvas"></div>
+
+<!-- Graffiti Layer -->
+<div class="graffiti-layer">
+    <div class="graffiti-text g1">SNR</div>
+    <div class="graffiti-text g2">DESIGN</div>
+    <div class="graffiti-text g3">INFORMATIKA</div>
+    <div class="graffiti-text g4">2025</div>
+    <div class="graffiti-text g5">UIN SSC</div>
+    <div class="graffiti-text g6">CREATIVE</div>
+    <div class="spray sp1"></div>
+    <div class="spray sp2"></div>
+    <div class="spray sp3"></div>
+    <div class="street-line sl1"></div>
+    <div class="street-line sl2"></div>
+    <div class="street-line sl3"></div>
+</div>
+
+<!-- Cursor dots -->
+<div class="cursor-dot" id="cursor1"></div>
+<div class="cursor-dot" id="cursor2" style="width:10px;height:10px;opacity:0.3;transition:all 0.15s;"></div>
+
+<!-- Mobile -->
+<button class="hamburger" id="hamburger" aria-label="Toggle Menu">
+    <span></span><span></span><span></span>
+</button>
+<div class="sidebar-overlay" id="overlay"></div>
+
+<!-- ════════ SIDEBAR ════════ -->
+<aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+        <div class="initials">SN</div>
+        <h2>Syahril Nadzif<br>Ramadhan</h2>
+        <p>Informatika · Semester 6</p>
+    </div>
+    <nav class="sidebar-nav">
+        <p class="nav-section-label">Navigation</p>
+        <a href="#hero" class="nav-item active"><span class="nav-dot"></span> Profil</a>
+        <a href="#pendidikan" class="nav-item"><span class="nav-dot"></span> Pendidikan</a>
+        <a href="#organisasi" class="nav-item"><span class="nav-dot"></span> Organisasi</a>
+        <a href="#proyek" class="nav-item"><span class="nav-dot"></span> Proyek</a>
+        <a href="#keahlian" class="nav-item"><span class="nav-dot"></span> Keahlian</a>
+        <p class="nav-section-label" style="margin-top:8px;">Kontak</p>
+        <a href="mailto:sahrieellnadzif@gmail.com" class="nav-item"><span class="nav-dot"></span> Email</a>
+        <a href="tel:+6282129238672" class="nav-item"><span class="nav-dot"></span> Telepon</a>
+    </nav>
+    <div class="sidebar-footer">
+        <p><span class="status-dot"></span>Open to Work</p>
+        <p style="margin-top:6px;">Cirebon, Jawa Barat</p>
+    </div>
+</aside>
+
+<!-- ════════ MAIN ════════ -->
+<main class="main">
+
+    <header class="topbar">
+        <span class="topbar-left">Curriculum Vitae</span>
+        <div class="topbar-right">
+            <span class="tag active">Social Media Design</span>
+            <span class="tag">Design Grafis</span>
+        </div>
+    </header>
+
+    <!-- ── HERO ── -->
+    <section id="hero">
+        <div class="hero-grid">
+            <div>
+                <p class="hero-eyebrow">Portfolio · 2026</p>
+                <h1 class="hero-name">
+                    Syahril Nadzif
+                    <span>Ramadhan</span>
+                </h1>
+                <p class="hero-title">Mahasiswa Informatika &nbsp;·&nbsp; Designer &nbsp;·&nbsp; Aktivis</p>
+                <p class="hero-about">
+                    Lulusan SMK Multimedia 2023, kini aktif sebagai mahasiswa Informatika semester 6 di UIN Siber Syekh Nurjati Cirebon. Bergelut di dunia organisasi kampus sekaligus mengembangkan minat di bidang Social Media Design dan Desain Grafis.
+                </p>
+                <div class="hero-contacts">
+                    <a href="mailto:sahrieellnadzif@gmail.com" class="contact-pill">
+                        <svg class="contact-icon" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M2 7l10 7 10-7"/></svg>
+                        sahrieellnadzif@gmail.com
+                    </a>
+                    <a href="tel:+6282129238672" class="contact-pill">
+                        <svg class="contact-icon" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.81 19.79 19.79 0 010 1.18 2 2 0 012 0h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
+                        +62 821-2923-8672
+                    </a>
+                    <span class="contact-pill">
+                        <svg class="contact-icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                        Cirebon, Jawa Barat
+                    </span>
+                </div>
+
+                <div class="stats-bar">
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="6">6</div>
+                        <div class="stat-label">Semester</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="4">4</div>
+                        <div class="stat-label">Organisasi</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number" data-target="2">2</div>
+                        <div class="stat-label">Proyek</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Royal Photo Frame -->
+            <div class="photo-frame">
+                <div class="photo-crown">👑</div>
+                <div class="photo-side-l">❧</div>
+                <div class="photo-side-r">❧</div>
+                <div class="photo-outer">
+                    <!-- Royal corner SVGs -->
+                    <div class="royal-corner tl">
+                        <svg viewBox="0 0 44 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 2 L20 2 L20 6 L6 6 L6 20 L2 20 Z" fill="rgba(201,168,76,0.8)"/>
+                            <path d="M2 2 L14 2 L14 4 L4 4 L4 14 L2 14 Z" fill="rgba(201,168,76,0.4)"/>
+                            <circle cx="8" cy="8" r="2" fill="rgba(201,168,76,0.9)"/>
+                            <circle cx="14" cy="4" r="1" fill="rgba(201,168,76,0.6)"/>
+                            <circle cx="4" cy="14" r="1" fill="rgba(201,168,76,0.6)"/>
+                            <path d="M20 2 Q22 5 20 8 Q18 5 20 2" fill="rgba(201,168,76,0.5)"/>
+                            <path d="M2 20 Q5 22 8 20 Q5 18 2 20" fill="rgba(201,168,76,0.5)"/>
+                        </svg>
+                    </div>
+                    <div class="royal-corner tr">
+                        <svg viewBox="0 0 44 44" fill="none">
+                            <path d="M2 2 L20 2 L20 6 L6 6 L6 20 L2 20 Z" fill="rgba(201,168,76,0.8)"/>
+                            <path d="M2 2 L14 2 L14 4 L4 4 L4 14 L2 14 Z" fill="rgba(201,168,76,0.4)"/>
+                            <circle cx="8" cy="8" r="2" fill="rgba(201,168,76,0.9)"/>
+                        </svg>
+                    </div>
+                    <div class="royal-corner bl">
+                        <svg viewBox="0 0 44 44" fill="none">
+                            <path d="M2 2 L20 2 L20 6 L6 6 L6 20 L2 20 Z" fill="rgba(201,168,76,0.8)"/>
+                            <path d="M2 2 L14 2 L14 4 L4 4 L4 14 L2 14 Z" fill="rgba(201,168,76,0.4)"/>
+                            <circle cx="8" cy="8" r="2" fill="rgba(201,168,76,0.9)"/>
+                        </svg>
+                    </div>
+                    <div class="royal-corner br">
+                        <svg viewBox="0 0 44 44" fill="none">
+                            <path d="M2 2 L20 2 L20 6 L6 6 L6 20 L2 20 Z" fill="rgba(201,168,76,0.8)"/>
+                            <path d="M2 2 L14 2 L14 4 L4 4 L4 14 L2 14 Z" fill="rgba(201,168,76,0.4)"/>
+                            <circle cx="8" cy="8" r="2" fill="rgba(201,168,76,0.9)"/>
+                        </svg>
+                    </div>
+
+                    <div class="photo-inner">
+                        <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='1000'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' x2='1' y1='0' y2='1'%3E%3Cstop stop-color='%2307111f'/%3E%3Cstop offset='1' stop-color='%23081d35'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='800' height='1000' fill='url(%23g)'/%3E%3Ccircle cx='180' cy='180' r='260' fill='%231e56c0' fill-opacity='0.18'/%3E%3Ccircle cx='650' cy='780' r='220' fill='%23c9a84c' fill-opacity='0.12'/%3E%3Crect x='140' y='130' width='520' height='740' rx='42' fill='%23070b16' fill-opacity='0.88' stroke='%23c9a84c' stroke-opacity='0.35' stroke-width='4'/%3E%3Ctext x='400' y='430' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='150' fill='%23e8c96a' font-weight='700'%3ESN%3C/text%3E%3Ctext x='400' y='760' text-anchor='middle' font-family='Arial, Helvetica, sans-serif' font-size='28' fill='%23dbe5f4'%3ESyahril Nadzif Ramadhan%3C/text%3E%3C/svg%3E" alt="Foto Syahril" id="cv-photo">
+                        <div class="photo-placeholder" id="photo-placeholder">
+                            <div class="photo-placeholder-icon">
+                                <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke="currentColor">
+                                    <circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+                                </svg>
+                            </div>
+                            <p>Letakkan<br>foto di sini</p>
+                        </div>
+                    </div>
+                    <div class="photo-label">✦ SNR · 2025 ✦</div>
+                </div>
+                <div class="photo-ribbon"></div>
+            </div>
+
+            <div class="photo-upload-wrap">
+                <label for="photo-input" class="photo-upload-btn">Pilih Foto</label>
+                <input type="file" id="photo-input" accept="image/*" hidden>
+                <p class="photo-upload-note">Format: JPG, PNG, WebP. Foto ini tampil langsung di halaman.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PENDIDIKAN ── -->
+    <section id="pendidikan" class="section">
+        <div class="section-header">
+            <span class="section-number">01</span>
+            <h2 class="section-title">Pendidikan</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="dropdown-card open" id="dd-smk">
+            <button class="dropdown-trigger" onclick="toggleDropdown('dd-smk')">
+                <div class="dropdown-trigger-left">
+                    <div class="dropdown-badge">
+                        <svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5-10-5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+                    </div>
+                    <div>
+                        <div class="dropdown-title">SMK Miftahul Huda 2</div>
+                        <div class="dropdown-subtitle">Jurusan Multimedia · 2020 – 2023</div>
+                    </div>
+                </div>
+                <svg class="dropdown-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="dropdown-body">
+                <div class="dropdown-body-inner">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2020 – 2023</div>
+                            <div class="timeline-name">Multimedia</div>
+                            <div class="timeline-role">Sekolah Menengah Kejuruan · Lulus 2023</div>
+                            <div class="timeline-desc">Mendalami bidang multimedia mencakup desain grafis, fotografi, dan produksi konten digital selama tiga tahun. Membangun fondasi kuat dalam kreativitas visual yang menjadi dasar minat berkarir di bidang desain.</div>
+                            <div class="timeline-achievement">🏆 Juara 1 — Lomba Catur Sekolah</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown-card" id="dd-smp">
+            <button class="dropdown-trigger" onclick="toggleDropdown('dd-smp')">
+                <div class="dropdown-trigger-left">
+                    <div class="dropdown-badge">
+                        <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    </div>
+                    <div>
+                        <div class="dropdown-title">SMP Miftahul Huda 2</div>
+                        <div class="dropdown-subtitle">2017 – 2020</div>
+                    </div>
+                </div>
+                <svg class="dropdown-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="dropdown-body">
+                <div class="dropdown-body-inner">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2017 – 2020</div>
+                            <div class="timeline-name">Sekolah Menengah Pertama</div>
+                            <div class="timeline-role">SMP Miftahul Huda 2</div>
+                            <div class="timeline-desc">Aktif berpartisipasi dalam kegiatan sekolah dan mengembangkan kemampuan kepemimpinan awal.</div>
+                            <div class="timeline-achievement">🎉 Panitia Acara Perpisahan 2019</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="dropdown-card" id="dd-sd">
+            <button class="dropdown-trigger" onclick="toggleDropdown('dd-sd')">
+                <div class="dropdown-trigger-left">
+                    <div class="dropdown-badge">
+                        <svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <div>
+                        <div class="dropdown-title">SDN 1 Rawa</div>
+                        <div class="dropdown-subtitle">2011 – 2017</div>
+                    </div>
+                </div>
+                <svg class="dropdown-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="dropdown-body">
+                <div class="dropdown-body-inner">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2011 – 2017</div>
+                            <div class="timeline-name">Sekolah Dasar</div>
+                            <div class="timeline-role">SDN 1 Rawa</div>
+                            <div class="timeline-desc">Awal perjalanan akademik yang menanamkan semangat belajar dan kompetisi.</div>
+                            <div class="timeline-achievement">🥈 Juara 2 — Lomba Catur</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── ORGANISASI ── -->
+    <section id="organisasi" class="section">
+        <div class="section-header">
+            <span class="section-number">02</span>
+            <h2 class="section-title">Organisasi</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="dropdown-card open" id="dd-org">
+            <button class="dropdown-trigger" onclick="toggleDropdown('dd-org')">
+                <div class="dropdown-trigger-left">
+                    <div class="dropdown-badge">
+                        <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                    </div>
+                    <div>
+                        <div class="dropdown-title">Keterlibatan Organisasi</div>
+                        <div class="dropdown-subtitle">4 Organisasi Aktif · UIN SSC Cirebon</div>
+                    </div>
+                </div>
+                <svg class="dropdown-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="dropdown-body">
+                <div class="dropdown-body-inner">
+                    <div class="org-grid">
+                        <div class="org-card">
+                            <div class="org-name">PMII</div>
+                            <div class="org-role">Anggota Aktif</div>
+                            <div class="org-desc">Pergerakan Mahasiswa Islam Indonesia — organisasi kemahasiswaan berbasis keislaman dan kebangsaan.</div>
+                        </div>
+                        <div class="org-card">
+                            <div class="org-name">HMJ Informatika</div>
+                            <div class="org-role">Dept. Religius & Social Affairs</div>
+                            <div class="org-desc">Himpunan Mahasiswa Jurusan Informatika. Aktif di departemen yang membidangi kegiatan sosial dan keagamaan.</div>
+                        </div>
+                        <div class="org-card">
+                            <div class="org-name">LSO DEMA Fakultas</div>
+                            <div class="org-role">Ketua Dislugri</div>
+                            <div class="org-desc">Lembaga Semi Otonom Dewan Mahasiswa. Memimpin Dinas Luar Negri bertanggung jawab atas hubungan eksternal fakultas.</div>
+                        </div>
+                        <div class="org-card">
+                            <div class="org-name">INF-Ramadhan</div>
+                            <div class="org-role">Ketua Pelaksana</div>
+                            <div class="org-desc">Program kerja HMJ Informatika. Dipercaya sebagai Ketua Pelaksana memimpin seluruh rangkaian kegiatan proker.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── PROYEK ── -->
+    <section id="proyek" class="section">
+        <div class="section-header">
+            <span class="section-number">03</span>
+            <h2 class="section-title">Proyek</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="dropdown-card open" id="dd-proj">
+            <button class="dropdown-trigger" onclick="toggleDropdown('dd-proj')">
+                <div class="dropdown-trigger-left">
+                    <div class="dropdown-badge">
+                        <svg viewBox="0 0 24 24"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                    </div>
+                    <div>
+                        <div class="dropdown-title">Aktivitas & Proyek Terkini</div>
+                        <div class="dropdown-subtitle">2 Proyek · 2025</div>
+                    </div>
+                </div>
+                <svg class="dropdown-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="dropdown-body">
+                <div class="dropdown-body-inner">
+                    <div class="project-card">
+                        <div class="project-num">01</div>
+                        <div>
+                            <div class="project-name">Aplikasi TEMuin</div>
+                            <div class="project-date">Agustus – November 2025</div>
+                            <div class="project-desc">Membangun aplikasi pelaporan barang hilang di lingkungan kampus UIN Siber Syekh Nurjati Cirebon. Sistem dirancang untuk memudahkan civitas akademika dalam melaporkan dan menemukan kembali barang yang hilang.</div>
+                        </div>
+                    </div>
+                    <div class="project-card">
+                        <div class="project-num">02</div>
+                        <div>
+                            <div class="project-name">Pengelola Keuangan Pribadi</div>
+                            <div class="project-date">Oktober 2025</div>
+                            <div class="project-desc">Aplikasi rekap keuangan pribadi berbasis tabel dengan fitur pencatatan Id, Tanggal, Jumlah, Kategori, dan deskripsi pemasukan maupun pengeluaran. Dikembangkan menggunakan Visual Studio Code.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ── KEAHLIAN ── -->
+    <section id="keahlian" class="section">
+        <div class="section-header">
+            <span class="section-number">04</span>
+            <h2 class="section-title">Keahlian & Kompetensi</h2>
+            <div class="section-line"></div>
+        </div>
+
+        <div class="dropdown-card open" id="dd-skill">
+            <button class="dropdown-trigger" onclick="toggleDropdown('dd-skill')">
+                <div class="dropdown-trigger-left">
+                    <div class="dropdown-badge">
+                        <svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+                    </div>
+                    <div>
+                        <div class="dropdown-title">Tools & Software</div>
+                        <div class="dropdown-subtitle">Design & Development</div>
+                    </div>
+                </div>
+                <svg class="dropdown-arrow" viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="dropdown-body">
+                <div class="dropdown-body-inner">
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <div class="skill-icon"><svg viewBox="0 0 24 24"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg></div>
+                            <span class="skill-name">Visual Studio Code</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
+                            <span class="skill-name">Canva</span>
+                        </div>
+                        <div class="skill-item">
+                            <div class="skill-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6M9 12h6M9 15h4"/></svg></div>
+                            <span class="skill-name">Figma</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</main>
+
+<script>
+// ── Dropdown with smooth animation ──
+function toggleDropdown(id) {
+    const card = document.getElementById(id);
+    card.classList.toggle('open');
+}
+
+// ── Active nav highlight ──
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-item[href^="#"]');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            navLinks.forEach(link => {
+                link.classList.toggle('active', link.getAttribute('href') === '#' + entry.target.id);
+            });
+        }
+    });
+}, { threshold: 0.25 });
+
+sections.forEach(s => observer.observe(s));
+
+// ── Mobile sidebar ──
+const hamburger = document.getElementById('hamburger');
+const sidebar = document.getElementById('sidebar');
+const overlay = document.getElementById('overlay');
+
+hamburger.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    overlay.classList.toggle('visible');
+});
+
+overlay.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    overlay.classList.remove('visible');
+});
+
+navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        sidebar.classList.remove('open');
+        overlay.classList.remove('visible');
+    });
+});
+
+// ── Photo detection ──
+const img = document.getElementById('cv-photo');
+const placeholder = document.getElementById('photo-placeholder');
+const photoInput = document.getElementById('photo-input');
+
+function showPhotoPreview(file) {
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = e => {
+        img.src = e.target.result;
+        img.style.display = 'block';
+        placeholder.style.display = 'none';
+    };
+    reader.readAsDataURL(file);
+}
+
+photoInput.addEventListener('change', (event) => {
+    const file = event.target.files && event.target.files[0];
+    if (file) showPhotoPreview(file);
+});
+
+img.onload = () => { img.style.display = 'block'; placeholder.style.display = 'none'; };
+img.onerror = () => { img.style.display = 'none'; placeholder.style.display = 'flex'; };
+
+// ── Custom cursor ──
+const c1 = document.getElementById('cursor1');
+const c2 = document.getElementById('cursor2');
+let mx = 0, my = 0;
+let cx2 = 0, cy2 = 0;
+
+document.addEventListener('mousemove', e => {
+    mx = e.clientX; my = e.clientY;
+    c1.style.left = mx + 'px';
+    c1.style.top = my + 'px';
+});
+
+function animateCursor() {
+    cx2 += (mx - cx2) * 0.12;
+    cy2 += (my - cy2) * 0.12;
+    c2.style.left = cx2 + 'px';
+    c2.style.top = cy2 + 'px';
+    requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// ── Floating particles ──
+function createParticle() {
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.left = Math.random() * 100 + 'vw';
+    const dur = 8 + Math.random() * 12;
+    p.style.animationDuration = dur + 's';
+    p.style.animationDelay = Math.random() * 5 + 's';
+    p.style.width = p.style.height = (1 + Math.random() * 2) + 'px';
+    p.style.opacity = 0;
+    const colors = ['#3d7fcc', '#c9a84c', '#6aa8e8', '#e8c96a'];
+    p.style.background = colors[Math.floor(Math.random() * colors.length)];
+    document.body.appendChild(p);
+    setTimeout(() => p.remove(), (dur + 5) * 1000);
+}
+
+for (let i = 0; i < 15; i++) createParticle();
+setInterval(createParticle, 2000);
+
+// ── Graffiti parallax ──
+document.addEventListener('mousemove', e => {
+    const x = (e.clientX / window.innerWidth - 0.5) * 20;
+    const y = (e.clientY / window.innerHeight - 0.5) * 20;
+    document.querySelectorAll('.graffiti-text').forEach((el, i) => {
+        const depth = 0.3 + (i % 3) * 0.2;
+        el.style.transform = el.style.transform.replace(/translate\([^)]*\)/, '')
+            + ` translate(${x * depth}px, ${y * depth}px)`;
+    });
+});
+</script>
+</body>
+</html>
