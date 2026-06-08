@@ -547,7 +547,7 @@ Edit
 <div class="hero">
 
 <h1>
-THE FUTURE OF NEWS
+THE FOUNDERS
 </h1>
 
 <p>
