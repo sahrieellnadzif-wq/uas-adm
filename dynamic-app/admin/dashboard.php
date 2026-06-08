@@ -141,7 +141,7 @@ Manage futuristic AI news platform
 href="tambah.php"
 class="add-btn"
 >
-+ Tambah Berita
++ Add News
 </a>
 
 </div>
