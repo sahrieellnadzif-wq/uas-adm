@@ -551,7 +551,7 @@ THE FOUNDERS
 </h1>
 
 <p>
-International futuristic cyberpunk AI media platform.
+International futuristic cyberpunk media platform.
 </p>
 
 </div>
