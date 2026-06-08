@@ -53,7 +53,7 @@ if(isset($_POST['submit'])){
 <body class="bg-black text-white p-10">
 
 <h1 class="text-5xl font-bold mb-10">
-➕ TAMBAH BERITA
+➕ Add News
 </h1>
 
 <form
